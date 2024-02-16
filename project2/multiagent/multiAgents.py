@@ -306,34 +306,34 @@ def betterEvaluationFunction(currentGameState: GameState):
     scaredTimes = [ghostState.scaredTimer for ghostState in ghostStates]
     capsules = currentGameState.getCapsules()
 
-    evaluationScore = currentGameState.getScore()
+    score = currentGameState.getScore()
     # print("start")
 
     remainingFoodCount = len(foodList)
     # print(remainingFoodCount)
-    evaluationScore -= remainingFoodCount * 5
-    # print("remainingFoodCount", evaluationScore)
+    score -= remainingFoodCount * 5
+    # print("remainingFoodCount", score)
 
     if foodList:
         minFoodDistance = min([util.manhattanDistance(pacmanPosition, food) for food in foodList])
-        evaluationScore -= minFoodDistance ** 1e-3
-        # print("nearestFoodDistance", evaluationScore)
+        score -= minFoodDistance ** 1e-3
+        # print("nearestFoodDistance", score)
     else:
         minFoodDistance = 0
 
     minGhostDistance = min([util.manhattanDistance(pacmanPosition, ghost.getPosition()) for ghost in ghostStates])
-    evaluationScore +=  minGhostDistance if  minGhostDistance <= 1 else evaluationScore
-    # print("nearestGhostDistance", evaluationScore)
+    score +=  minGhostDistance if  minGhostDistance <= 1 else score
+    # print("nearestGhostDistance", score)
 
-    evaluationScore += 200  if any(scaredTimes) else evaluationScore
-    # print("scaredTimes", evaluationScore)
+    score += 200  if any(scaredTimes) else score
+    # print("scaredTimes", score)
 
     for capsule in capsules:
         capsuleDistance = util.manhattanDistance(pacmanPosition, capsule)
-        evaluationScore += 100 if capsuleDistance <= 1 else evaluationScore
-    # print("capsules", evaluationScore)
+        score += 100 if capsuleDistance <= 1 else score
+    # print("capsules", score)
 
-    return evaluationScore
+    return score
     # util.raiseNotDefined()
 
 # Abbreviation
