@@ -322,7 +322,7 @@ def betterEvaluationFunction(currentGameState: GameState):
         minFoodDistance = 0
 
     minGhostDistance = min([util.manhattanDistance(pacmanPosition, ghost.getPosition()) for ghost in ghostStates])
-    score +=  minGhostDistance if  minGhostDistance <= 1 else score
+    score +=  minGhostDistance if minGhostDistance <= 1 else score
     # print("minGhostDistance", score)
 
     score += 200  if any(scaredTimes) else score
