@@ -315,11 +315,11 @@ def betterEvaluationFunction(currentGameState: GameState):
     # print("remainingFoodCount", evaluationScore)
 
     if foodList:
-        nearestFoodDistance = min([util.manhattanDistance(pacmanPosition, food) for food in foodList])
-        evaluationScore -= nearestFoodDistance ** 1e-3
+        minFoodDistance = min([util.manhattanDistance(pacmanPosition, food) for food in foodList])
+        evaluationScore -= minFoodDistance ** 1e-3
         # print("nearestFoodDistance", evaluationScore)
     else:
-        nearestFoodDistance = 0
+        minFoodDistance = 0
 
     nearestGhostDistance = min([util.manhattanDistance(pacmanPosition, ghost.getPosition()) for ghost in ghostStates])
     evaluationScore +=  nearestGhostDistance if  nearestGhostDistance <= 1 else evaluationScore
